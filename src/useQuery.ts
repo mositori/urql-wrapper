@@ -1,6 +1,6 @@
 import {useCallback, useMemo} from 'react';
 
-import {useQuery} from 'urql';
+import {useQuery as useUrqlQuery} from 'urql';
 
 import type {TypedDocumentNode, AnyVariables, RequestPolicy} from 'urql';
 
@@ -66,10 +66,10 @@ export interface UseAppQueryReturn<Result, Data> {
   __rawValue?: Data;
 }
 
-export const useAppQuery = <Data, Variables extends AnyVariables, SelectedData>(
+export const useQuery = <Data, Variables extends AnyVariables, SelectedData>(
   props: UseAppQueryProps<Data, Variables, SelectedData>
 ): UseAppQueryReturn<QueryResult<SelectedData>, Data> => {
-  const [{data, fetching, error}, _refetch] = useQuery<Data, Variables>({
+  const [{data, fetching, error}, _refetch] = useUrqlQuery<Data, Variables>({
     query: props.query,
     variables: props.variables,
     pause: props.paused,
