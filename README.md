@@ -10,7 +10,7 @@ TBD
 
 ### Code readability
 
-urql `useQuery` returns values as below:
+The default urql useQuery implementation returns a complex object that can be difficult to read and understand.
 
 ```ts
 // urql 4.0.0
@@ -32,14 +32,12 @@ interface UseQueryState<
 }
 ```
 
-This is good enough but it could be improved to enhance its readability.
-
 For instance, it's unclear what the status is when both `error` and `data` have a value, or whether such a state can exist.
 
 The primary concerns when fetching data are whether the data is currently being fetched, whether the data was successfully fetched, or whether it failed and why.
 
 If it is the initial data fetching, it should be obvious that the data is not yet available. When fetching is successful, the data should be available.
-With urql-wrapper's useQuery, these simple principles are already implemented, allowing you to write type-safe and easy-to-read code, as demonstrated below."
+Using urql-wrapper's useQuery implementation, these concerns are addressed in a more readable and type-safe way. The implementation returns a status string union that can be used to check for three possible states: fetching, success, and error. This makes it easier to understand what state the data fetching process is in and how to handle each state as demonstrated below.
 
 ```tsx
 import {useQuery} from 'urql-wrapper';
