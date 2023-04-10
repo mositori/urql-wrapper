@@ -102,7 +102,7 @@ function UserListContainer() {
 }
 ```
 
-Here, the code fetches data using the useQuery function and checks for three possible states: if data is being fetched, if there is an error, and if data is missing. However, if the data is optional, it is not clear what should be done in that case.
+Here, the code fetches data and checks for three possible states: if data is being fetched, if there is an error, and if data is missing. However, if the data is optional, it is not clear what should be done in that case.
 
 ### Data handling
 
